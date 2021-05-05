@@ -4,10 +4,11 @@
 >mathtokenizer: ^1.0.6
 
 ### Library:
->shunt: shunting function that takes string input and returns either 0 (if mismatched parentheses) or an array of objects {type, value} 
->an implementation of the shunting-yard algorithm (with unary operator, and nested function support)
+
+>shunt: shunting function that takes string input and returns either 0 (if mismatched parentheses) or an array of objects {type, value}, an implementation of the shunting-yard algorithm (with unary operator, and nested function support)
+
 >validate: validating function that takes string input and returns an array:
->[0 || 1, "Error or Success message"]
+[0 || 1, "Error or Success message"]
 
 ### Examples:
 
