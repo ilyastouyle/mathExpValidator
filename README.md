@@ -5,9 +5,9 @@
 
 ### Library:
 
->shunt: shunting function that takes string input and returns either 0 (if mismatched parentheses) or an array of objects {type, value}, an implementation of the shunting-yard algorithm (with unary operator, and nested function support)
+>**shunt**: shunting function that takes string input and returns either 0 (if mismatched parentheses) or an array of objects {type, value}, an implementation of the shunting-yard algorithm (with unary operator, and nested function support)
 
->validate: validating function that takes string input and returns an array:
+>**validate**: validating function that takes string input and returns an array:
 [0 || 1, "Error or Success message"]
 
 ### Examples:
@@ -18,11 +18,11 @@
 	let output = validator.shunt("-sin(1/x)");
 	/*
 		output = [
-					token { type: 'number', value: '1' },
-      				token { type: 'variable', value: 'x' },
-      				token { type: 'operator', value: '/' },
-      				token { type: 'function', value: 'sin' },
-      				token { type: 'unary_operator', value: '-' }
+			token { type: 'number', value: '1' },
+      		token { type: 'variable', value: 'x' },
+      		token { type: 'operator', value: '/' },
+      		token { type: 'function', value: 'sin' },
+      		token { type: 'unary_operator', value: '-' }
     			]
 	*/
 	let status = validator.validate("-sin(1/x)");
@@ -41,11 +41,11 @@
 	const validator = require('mathexpvalidator');
 	let output = validator.shunt("x-1+");
 	/*
- 		output = [
-      				token { type: 'variable', value: 'x' },
-      				token { type: 'number', value: '1' },
-				    token { type: 'operator', value: '-' },
-				    token { type: 'operator', value: '+' }
+		output = [
+      		token { type: 'variable', value: 'x' },
+      		token { type: 'number', value: '1' },
+			token { type: 'operator', value: '-' },
+			token { type: 'operator', value: '+' }
     			]
 	*/
 	let status = validator.validate("x-1+");
