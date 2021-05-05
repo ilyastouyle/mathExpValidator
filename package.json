@@ -1,0 +1,31 @@
+{
+  "name": "mathexpvalidator",
+  "version": "1.0.0",
+  "description": "Mathemaical Expression Validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyastouyle/mathExpValidator.git"
+  },
+  "keywords": [
+    "parser",
+    "validator",
+    "math",
+    "shuntingyard"
+  ],
+  "author": "Ilyas Touyle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ilyastouyle/mathExpValidator/issues"
+  },
+  "homepage": "https://github.com/ilyastouyle/mathExpValidator#readme",
+  "dependencies": {
+    "mathtokenizer": "^1.0.6"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
