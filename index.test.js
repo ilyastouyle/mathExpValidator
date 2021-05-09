@@ -19,3 +19,20 @@ test("\"sin(1/x)\" should be valid", () => {
 test("\"sin(1/x-)\" should be invalid", () => {
 	expect(validator.validate("sin(1/x-)")[0]).toBe(0);
 })
+
+test("\"-\" should be invalid", () => {
+	//console.log(validator.shunt("-"));
+	expect(validator.validate("-")[0]).toBe(0);
+})
+
+test("\"(\" should be invalid", () => {
+	expect(validator.validate("-")[0]).toBe(0);
+})	
+
+test("\".\" should be invalid", () => {
+	expect(validator.validate(".")[0]).toBe(0);
+})
+
+test("\"()\" should be invalid", () => {
+	expect(validator.validate("()")[0]).toBe(0);
+})

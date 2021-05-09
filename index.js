@@ -23,6 +23,8 @@ let Validator = {
 		for(let i = 0; i < tokens.length; i++){
 			let token = tokens[i];
 			switch(token.type){
+				case "separator":
+					return 0;
 				case "number":
 				case "variable":
 					output.push(token);
@@ -55,11 +57,14 @@ let Validator = {
 					break;
 				case "rparenthesis":
 					let j = operators.length - 1;
+					//initial length constant for later comparison, to detect empty parentheses
+					const init_length = operators.length - 1;
 					while(j >= 0 && (operators[j].type != "lparenthesis")){
 						output.push(operators.pop());
 						j--;
 					}
-					if(j == -1){
+					//if no left parentheses or left parenthesis at the top (empty content)
+					if(j == -1 || j == init_length){
 						return 0;
 					}
 					if(operators[j].type == "lparenthesis"){
@@ -122,7 +127,7 @@ let Validator = {
 					}
 				}
 			}
-			return [1, "Valid expression"];
+			return ((output[0].type == "number" || output[0].type == "variable") ? [1, "Valid expression"] : [0, "Insufficient operands"]);
 		}
 	}
 }
