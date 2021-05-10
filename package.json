@@ -1,6 +1,6 @@
 {
   "name": "mathexpvalidator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mathemaical Expression Validator",
   "main": "index.js",
   "scripts": {
