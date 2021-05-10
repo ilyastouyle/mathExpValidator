@@ -40,3 +40,7 @@ test("\"()\" should be invalid", () => {
 test("\"cos(x)\" should be valid", () => {
 	expect(validator.validate("cos(x)")[0]).toBe(1);
 })
+
+test("\"( - x + 2 )\" should be valid", () => {
+	expect(validator.validate("( - x + 2 )")[0]).toBe(1);
+})
