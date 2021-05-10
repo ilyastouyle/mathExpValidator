@@ -56,24 +56,32 @@ let Validator = {
 					operators.push(token);
 					break;
 				case "rparenthesis":
-					let j = operators.length - 1;
-					//initial length constant for later comparison, to detect empty parentheses
-					const init_length = operators.length - 1;
-					while(j >= 0 && (operators[j].type != "lparenthesis")){
-						output.push(operators.pop());
-						j--;
-					}
-					//if no left parentheses or left parenthesis at the top (empty content)
-					if(j == -1 || j == init_length){
-						return 0;
-					}
-					if(operators[j].type == "lparenthesis"){
-						operators.pop();
-						if(operators[operators.length - 1] != undefined){
-							if(operators[operators.length - 1].type == "function"){
+					if(tokens[i-1] != undefined){
+						if(tokens[i-1].type == "lparenthesis"){
+							return 0; //empty parentheses
+						}
+						else{
+							let j = operators.length - 1;
+							while(j >= 0 && (operators[j].type != "lparenthesis")){
 								output.push(operators.pop());
+								j--;
+							}
+							//if no left parentheses found
+							if(j == -1){
+								return 0;
+							}
+							if(operators[j].type == "lparenthesis"){
+								operators.pop();
+								if(operators[operators.length - 1] != undefined){
+									if(operators[operators.length - 1].type == "function"){
+										output.push(operators.pop());
+									}
+								}
 							}
 						}
+					}
+					else{
+						return 0;
 					}
 					break;
 			}

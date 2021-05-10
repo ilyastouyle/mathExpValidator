@@ -36,3 +36,7 @@ test("\".\" should be invalid", () => {
 test("\"()\" should be invalid", () => {
 	expect(validator.validate("()")[0]).toBe(0);
 })
+
+test("\"cos(x)\" should be valid", () => {
+	expect(validator.validate("cos(x)")[0]).toBe(1);
+})
