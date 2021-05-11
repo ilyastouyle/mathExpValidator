@@ -1,7 +1,7 @@
 # mathexpvalidator
 ## Mathematical Expression Validator 
 ### Dependencies: 
->mathtokenizer: ^1.0.7
+>mathtokenizer: ^1.0.8
 
 ### Library:
 
