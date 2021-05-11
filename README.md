@@ -12,6 +12,9 @@
 >**validate** can also take optional arguments such as an array **fuctions** of accepted function names, and an array of **variables**: **validate(expression, __functions__(optional),__variables__(optional))**
 
 ### Examples:
+To run these examples, just install the package in your directory:
+>npm i mathexpvalidator
+And add the example code to your js file and then run it
 
 #### Example 1:
 
