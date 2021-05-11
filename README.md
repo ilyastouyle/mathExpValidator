@@ -14,7 +14,7 @@
 ### Examples:
 To run these examples, just install the package in your directory:
 
->npm i mathexpvalidator
+	npm i mathexpvalidator
 
 And add the example code to your js file and then run it
 
