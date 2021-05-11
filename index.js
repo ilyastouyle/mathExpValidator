@@ -97,12 +97,22 @@ let Validator = {
 		return output;
 	},
 	//Validating the output produced by the shunting-yard function
-	validate: function validate(expression){
+	//If provided, functions and variables arguments are for accepted function and variable names
+	validate: function validate(expression, functions, variables){
 		let output = this.shunt(expression);
 		if(output == 0){
 			return [0, "Mismatched parenthesis"];
 		}
-		else{
+		if(variables != undefined){
+			let t = false;
+			output.forEach((element) => {
+				if(element.type == "variable" && !variables.includes(element.value)){
+					t = true;
+				}
+			});
+			if(t) return [0, "Variable name not allowed"];
+		}
+		if(output != 0){
 			while(output.length > 1){
 				let i = 0;
 				while((output[i].type == "variable" || output[i].type == "number") && i <= output.length){
@@ -111,7 +121,17 @@ let Validator = {
 				if(output[i].type == "function" || output[i].type == "unary_operator"){
 					if(output[i - 1] != undefined){
 						if(output[i - 1].type == "variable" || output[i - 1].type == "number"){
-							output.splice(i, 1);
+							if(output[i].type == "function" && functions != undefined){
+								if(functions.includes(output[i].value.toLowerCase())){
+									output.splice(i, 1);	
+								}
+								else{
+									return [0, "Function name not recognized"];
+								}
+							}
+							else{
+								output.splice(i, 1);
+							}
 						}
 						else{
 							return (output[i].type == "function") ? [0, "Function parameter error"] : [0, "Insufficient operands"];

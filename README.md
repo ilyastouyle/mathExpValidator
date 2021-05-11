@@ -9,6 +9,7 @@
 
 >**validate**: validating function that takes string input and returns an array:
 [0 || 1, "Error or Success message"]
+>**validate** can also take optional arguments such as an array **fuctions** of accepted function names, and an array of **variables**: **validate(expression, __functions__(optional),__variables__(optional))**
 
 ### Examples:
 
@@ -51,3 +52,16 @@
 	let status = validator.validate("x-1+");
 	//status = [ 0, 'Insufficient operands' ]
 
+### Example 4: __Using functions, variables optional arguments__
+	const validator = require('mathexpvalidator');
+	const func = ["cos", "cosh", "acos", "sin", "sinh", "asin"];
+	const vari = ["x"];
+	let status = validator.validate("cosh(x)", func, vari);
+	//status = [1, 'Valid expression']
+
+### Example 5: Using the same func and vari arguments from example 4 but with an added variable t in the expression
+	const validator = require('mathexpvalidator');
+	const func = ["cos", "cosh", "acos", "sin", "sinh", "asin"];
+	const vari = ["x"];
+	let status = validator.validate("cosh(x*t)", func, vari);
+	//status = [0, 'Variable name not allowed']
