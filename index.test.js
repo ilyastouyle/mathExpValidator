@@ -83,3 +83,21 @@ test("\"exp(cosh(2x))\" should be invalid", () => {
 test("\"exp(cosh(2x))\" should be valid, with added support for \"cosh\"", () => {
 	expect(validator.validate("exp(cosh(2x))", ["cos", "cosh", "exp", "sin"], ["x"])[0]).toBe(1);
 })
+
+//Mismatched delimiters
+test("\"sin(x}\" should be invalid", () => {
+	expect(validator.validate("sin(x}")[0]).toBe(0);
+})
+
+test("\"2*(sin(x)+1}\" should be invalid", () => {
+	expect(validator.validate("2*(sin(x)+1}")[0]).toBe(0);
+})
+
+test("\"2*{sin(x)+1}\" should be valid", () => {
+	expect(validator.validate("2*{sin(x)+1}")[0]).toBe(1);
+})
+
+test("\"2*[sin{x}+1]]\" should be invalid", () => {
+	expect(validator.validate("2*[sin{x}+1]]")[0]).toBe(0);
+})
+

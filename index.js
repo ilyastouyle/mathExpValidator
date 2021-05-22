@@ -14,6 +14,26 @@ function precedence(token){
 	}
 }
 
+function delim_type(delimiter){
+	switch(delimiter){
+		case '(':
+		case ')':
+			return 0;
+			break;
+		case '{':
+		case '}':
+			return 1;
+			break;
+		case '[':
+		case ']':
+			return 2;
+			break;
+		default:
+			return 3;
+			break;
+	}
+}
+
 let Validator = {
 	//SHUNTING-YARD implementation
 	shunt: function shunt(expression){
@@ -40,7 +60,7 @@ let Validator = {
 								&&
 						(last_op.type == "operator" || last_op.type == "unary_operator")
 								&&
-						last_op.type != "lparenthesis"
+						last_op.type != "ldelimiter"
 								&&
 						(precedence(last_op) > precedence(token)
 								||
@@ -52,25 +72,31 @@ let Validator = {
 					}
 					operators.push(token);
 					break;
-				case "lparenthesis":
+				case "ldelimiter":
 					operators.push(token);
 					break;
-				case "rparenthesis":
+				case "rdelimiter":
 					if(tokens[i-1] != undefined){
-						if(tokens[i-1].type == "lparenthesis"){
-							return 0; //empty parentheses
+						if(tokens[i-1].type == "ldelimiter"){
+							return 0; //empty content delimiters (matched or mismatched)
 						}
 						else{
 							let j = operators.length - 1;
-							while(j >= 0 && (operators[j].type != "lparenthesis")){
-								output.push(operators.pop());
-								j--;
+							//popping operators at the top of the stack until reaching a matching left delimiter or else j reaches -1
+							while(
+								j >= 0 
+									&& 
+								((operators[j].type != "ldelimiter")
+									|| 
+								(delim_type(operators[j].value) != delim_type(token.value)))
+							){
+									output.push(operators.pop());
+									j--;
 							}
-							//if no left parentheses found
-							if(j == -1){
+							if(j == -1){ //if no left matching delimiter found
 								return 0;
 							}
-							if(operators[j].type == "lparenthesis"){
+							else{
 								operators.pop();
 								if(operators[operators.length - 1] != undefined){
 									if(operators[operators.length - 1].type == "function"){
@@ -86,8 +112,10 @@ let Validator = {
 					break;
 			}
 		}
+		//After reading all the tokens we clear out the operator stack 
 		for(let i = operators.length - 1; i >= 0; i--){
-			if(operators[i].type == "lparenthesis" || operators[i].type == "rparenthesis"){
+			//If there are any delimiters left, there is a mismatched delimiter error 
+			if(operators[i].type == "ldelimiter" || operators[i].type == "rdelimiter"){
 				return 0;
 			}
 			else{
@@ -101,7 +129,7 @@ let Validator = {
 	validate: function validate(expression, functions, variables){
 		let output = this.shunt(expression);
 		if(output == 0){
-			return [0, "Mismatched parenthesis"];
+			return [0, "Mismatched delimiters"];
 		}
 		if(variables != undefined){
 			let t = false;
