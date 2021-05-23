@@ -49,12 +49,12 @@ And add the example code to your js file and then run it
 	let output = validator.shunt("-sin(1/x)");
 	/*
 		output = [
-		 token { type: 'number', value: '1' },
-      	 token { type: 'variable', value: 'x' },
-      	 token { type: 'operator', value: '/' },
-      	 token { type: 'function', value: 'sin' },
-      	 token { type: 'unary_operator', value: '-' }
-    	]
+			token { type: 'number', value: '1' },
+			token { type: 'variable', value: 'x' },
+			token { type: 'operator', value: '/' },
+			token { type: 'function', value: 'sin' },
+			token { type: 'unary_operator', value: '-' }
+		]
 	*/
 	let status = validator.validate("-sin(1/x)");
 	//status = [ 1, 'Valid expression' ]
@@ -73,11 +73,11 @@ And add the example code to your js file and then run it
 	let output = validator.shunt("x-1+");
 	/*
 		output = [
-      	 token { type: 'variable', value: 'x' },
-      	 token { type: 'number', value: '1' },
-		 token { type: 'operator', value: '-' },
-		 token { type: 'operator', value: '+' }
-    	]
+			token { type: 'variable', value: 'x' },
+			token { type: 'number', value: '1' },
+			token { type: 'operator', value: '-' },
+			token { type: 'operator', value: '+' }
+		]
 	*/
 	let status = validator.validate("x-1+");
 	//status = [ 0, 'Insufficient operands' ]
