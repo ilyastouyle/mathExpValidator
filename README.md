@@ -24,8 +24,9 @@ The expression validator uses the mathematical expression **tokenizer** and then
 ```js
 	shunt(exp //mathematical expression) 
 ```
+#### Validation function
 
-`validate`: validating function that takes `string` input and returns an array: `[0 OR 1, "Error or Success message"]`    
+`validate`: validating function that takes `string` input and returns an array of two entries. The first being 0 or 1, and the second being a success or error message.     
 `validate` can also take optional arguments such as an array `fuctions[]` of accepted function names, and an array of `variables[]`:  
 ```js
 	validate(expression, functions[] /*optional*/, variables[] /*optional*/)
