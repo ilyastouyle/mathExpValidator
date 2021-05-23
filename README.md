@@ -32,7 +32,7 @@ To run these examples, just install the package in your directory:
 And add the example code to your js file and then run it
 
 #### Example 1:
-
+```js
 	const validator = require('mathexpvalidator');
 	let output = validator.shunt("-sin(1/x)");
 	/*
@@ -46,17 +46,17 @@ And add the example code to your js file and then run it
 	*/
 	let status = validator.validate("-sin(1/x)");
 	//status = [ 1, 'Valid expression' ]
-
+```
 #### Example 2:
-
+```js
 	const validator = require('mathexpvalidator');
 	let output = validator.shunt("(1+x)\*(x-");
 	//output = 0 (because of mismatched parentheses)
 	let status = validator.validate("(1+x)\*(x-");
 	//status = [ 0, 'Mismatched parenthesis' ]
-
+```
 ### Example 3: 
-
+```js
 	const validator = require('mathexpvalidator');
 	let output = validator.shunt("x-1+");
 	/*
@@ -69,17 +69,20 @@ And add the example code to your js file and then run it
 	*/
 	let status = validator.validate("x-1+");
 	//status = [ 0, 'Insufficient operands' ]
-
+```
 ### Example 4: __Using functions, variables optional arguments__
+```js
 	const validator = require('mathexpvalidator');
 	const func = ["cos", "cosh", "acos", "sin", "sinh", "asin"];
 	const vari = ["x"];
 	let status = validator.validate("cosh(x)", func, vari);
 	//status = [1, 'Valid expression']
-
+```
 ### Example 5: Using the same func and vari arguments from example 4 but with an added variable t in the expression
+```js
 	const validator = require('mathexpvalidator');
 	const func = ["cos", "cosh", "acos", "sin", "sinh", "asin"];
 	const vari = ["x"];
 	let status = validator.validate("cosh(x*t)", func, vari);
 	//status = [0, 'Variable name not allowed']
+```
