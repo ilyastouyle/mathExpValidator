@@ -5,15 +5,15 @@
 ### Description
 
 While working on a math animation web app, I eventually had to validate mathematical input. 
-A neat trick I used to resort to when I needed to validate math expressions was using the Eval() function, with a try, catch block.  
+A neat trick I used to resort to when I needed to validate math expressions was using the `Eval()` function, with a try, catch block.  
 I quickly ran into many issues, namely that many invalid math expressions didn't return an error when using Eval().  
-For example "()", or "[]" would be considered false positives (i.e: would not be caught as an error) using the aforementioned "trick".  
-And expressions like "sin(1/x)" when evaluated at x = 0, would be considered false negatives (i.e: would be caught as an error).   
+For example `()`, or `[]` would be considered false positives (i.e: would not be caught as an error) using the aforementioned "trick".  
+And expressions like `sin(1/x)` when evaluated at `x = 0`, would be considered false negatives (i.e: would be caught as an error).   
 And there is also the issue of variable names.   
-I for example used to set x and t in the expressions to 0, and then use Eval().  
-But what if the expression has other variable names? What to do about the fact that at 0 it would return an error such as in "sin(1/x)" but wouldn't return an error when x is set to 1?
+I for example used to set `x` and `t` in the expressions to 0, and then use `Eval()`.  
+But what if the expression has other variable names? What to do about the fact that at 0 it would return an error such as in `sin(1/x)` but wouldn't return an error when `x` is set to 1?
 i.e: the issue of singularities.  
-So, I decided to give up on the Eval() trick and write my own expression validator. And for that I also wrote my own [mathematical expression tokenizer](https://github.com/ilyastouyle/mathTokenizer).  
+So, I decided to give up on the `Eval()` trick and write my own expression validator. And for that I also wrote my own [mathematical expression tokenizer](https://github.com/ilyastouyle/mathTokenizer).  
 The expression validator uses the mathematical expression tokenizer and then uses my implementation of the Shunting-Yard algorithm (Reverse Polish Notation) and then a validating fuction.  
 
 ### Library:
