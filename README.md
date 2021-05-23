@@ -26,7 +26,7 @@ The expression validator uses the mathematical expression **tokenizer** and then
 `shunt`: shunting function that takes `string` input and returns either `0` (if mismatched parentheses) or an array of objects `{type, value}`, an implementation of the shunting-yard algorithm (with unary operator, and nested function support)  
 
 ```js
-	shunt(exp //mathematical expression) 
+	shunt(exp /*mathematical expression*/) 
 ```
 #### Validation function
 
