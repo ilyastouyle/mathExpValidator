@@ -14,16 +14,22 @@ I for example used to set `x` and `t` in the expressions to 0, and then use `Eva
 But what if the expression has other variable names? What to do about the fact that at 0 it would return an error such as in `sin(1/x)` but wouldn't return an error when `x` is set to 1?
 i.e: the issue of singularities.  
 So, I decided to give up on the `Eval()` trick and write my own expression validator. And for that I also wrote my own [mathematical expression tokenizer](https://github.com/ilyastouyle/mathTokenizer).  
-The expression validator uses the mathematical expression tokenizer and then uses my implementation of the Shunting-Yard algorithm (Reverse Polish Notation) and then a validating fuction.  
+The expression validator uses the mathematical expression **tokenizer** and then uses my implementation of the **Shunting-Yard algorithm** (__Reverse Polish Notation__) and then a **validating** fuction.  
 
 ### Library:
 
-**shunt**: shunting function that takes string input and returns either 0 (if mismatched parentheses) or an array of objects {type, value}, an implementation of the shunting-yard algorithm (with unary operator, and nested function support)
+#### Shunting function
+	
+`shunt`: shunting function that takes `string` input and returns either `0` (if mismatched parentheses) or an array of objects `{type, value}`, an implementation of the shunting-yard algorithm (with unary operator, and nested function support)  
+```js
+	shunt(exp //mathematical expression) 
+```
 
-**validate**: validating function that takes string input and returns an array:
-[0 || 1, "Error or Success message"]  
-**validate** can also take optional arguments such as an array **fuctions** of accepted function names, and an array of **variables**: **validate**(expression, __functions__(optional),__variables__(optional))**
-
+`validate`: validating function that takes `string` input and returns an array: `[0 OR 1, "Error or Success message"]`    
+`validate` can also take optional arguments such as an array `fuctions[]` of accepted function names, and an array of `variables[]`:  
+```js
+	validate(expression, functions[] /*optional*/, variables[] /*optional*/)
+```
 ### Usage and examples:
 To run these examples, just install the package in your directory:
 
