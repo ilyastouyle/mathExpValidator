@@ -2,6 +2,9 @@
 ### Dependencies: 
 	mathtokenizer: ^1.1.0
 
+### Install 
+	npm i mathexpvalidator --save
+
 ### Description
 
 While working on a math animation web app, I eventually had to validate mathematical input.  
@@ -36,7 +39,7 @@ The expression validator uses the mathematical expression **tokenizer** and then
 ### Usage and examples:
 To run these examples, just install the package in your directory:
 
-	npm i mathexpvalidator
+	npm i mathexpvalidator --save
 
 And add the example code to your js file and then run it
 
